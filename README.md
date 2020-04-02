@@ -1,46 +1,55 @@
-# Blazor-Tabs-Select-Tab Item
+# Accordion Dynamic Content
 
 ## Sample Description
 
-The Blazor Tab component supports to select specific Tab item using `SelectedItem` property otherwise the first Tab item has been selected by default.
+The Accordion component supports to load content as dynamically using `ContentTemplate` property and prefered content can be passing through `RenderFragment`.
 
-## Steps to select specific Tab item
+> ContentTemplate property supports RenderFragment type to render content.
+
+## Steps to create Dynamic Accordion Content
 
   1. Create a blazor application using this [getting started](https://blazor.syncfusion.com/documentation/getting-started/server-side-blazor/) link.
 
-  2. Define the Tab with `SelectedItem` property to select the particular Tab item. Refer the below code for that
+  2. Define the Accordion content as `RenderFragment` type for dynamic loading. Refer the below code for that
 
   ```
   @using Syncfusion.Blazor.Navigations
 
-<SfTab SelectedItem="2">
-    <TabItems>
-        <TabItem>
-            <ChildContent>
-                <TabHeader Text="HTML"></TabHeader>
-            </ChildContent>
+<SfAccordion>
+    <AccordionItems>
+        <AccordionItem>
+            <HeaderTemplate>
+                <div>Margeret Peacock</div>
+            </HeaderTemplate>
             <ContentTemplate>
-                <div>HyperText Markup Language, commonly referred to as HTML, is the standard markup language used to create web pages. Along with CSS, and JavaScript, HTML is a cornerstone technology, used by most websites to create visually engaging web pages, user interfaces for web applications, and user interfaces for many mobile applications.[1] Web browsers can read HTML files and render them into visible or audible web pages. HTML describes the structure of a website semantically along with cues for presentation, making it a markup language, rather than a programming language.</div>
+                Margeret Peacock was born on Saturday , 01 December 1990. Now lives at Coventry House Miner Rd., London,UK. Margeret Peacock holds a position of Sales Coordinator in our WA department, (Seattle USA). Joined our company on Saturday , 01 May 2010
             </ContentTemplate>
-        </TabItem>
-        <TabItem>
-            <ChildContent>
-                <TabHeader Text="Java"></TabHeader>
-            </ChildContent>
+        </AccordionItem>
+        <AccordionItem>
+            <HeaderTemplate>
+                <div>Laura Callahan</div>
+            </HeaderTemplate>
             <ContentTemplate>
-                <div>Java is a set of computer software and specifications developed by Sun Microsystems, later acquired by Oracle Corporation, that provides a system for developing application software and deploying it in a cross-platform computing environment. Java is used in a wide variety of computing platforms from embedded devices and mobile phones to enterprise servers and supercomputers. While less common, Java applets run in secure, sandboxed environments to provide many features of native applications and can be embedded in HTML pages.</div>
+                Laura Callahan was born on Tuesday , 06 November 1990. Now lives at Edgeham Hollow Winchester Way, London,UK. Laura Callahan holds a position of Sales Coordinator in our WA department, (Seattle USA). Joined our company on Saturday , 01 May 2010
             </ContentTemplate>
-        </TabItem>
-        <TabItem>
-            <ChildContent>
-                <TabHeader Text="JavaScript"></TabHeader>
-            </ChildContent>
-            <ContentTemplate>
-                <div>JavaScript (JS) is an interpreted computer programming language. It was originally implemented as part of web browsers so that client-side scripts could interact with the user, control the browser, communicate asynchronously, and alter the document content that was displayed.[5] More recently, however, it has become common in both game development and the creation of desktop applications.</div>
-            </ContentTemplate>
-        </TabItem>
-    </TabItems>
-</SfTab>
+        </AccordionItem>
+        <AccordionItem>
+            <HeaderTemplate>
+                <div>Albert Dodsworth</div>
+            </HeaderTemplate>
+            <ContentTemplate>@DynamicContent</ContentTemplate>
+        </AccordionItem>
+    </AccordionItems>
+</SfAccordion>
 
-```
-  3. Simply press `F5` to run the application.
+@code {
+    public RenderFragment DynamicContent = builder =>
+    {
+        builder.AddContent(1, "Albert Dodsworth was born on Thursday, 19 October 1989.Now lives at 4726 - 11th Ave.N.E., Seattle, USA.Albert Dodsworth holds a position of Sales Representative in our WA department, (Seattle USA).Joined our company on Friday, 01 May 2009");
+    };
+}
+
+   3. Simply press `F5` to run the application.
+
+  ```
+
